@@ -1,12 +1,30 @@
-var GameCount;
-var RollWinChance;
-var RollCount;
-car RollConsecutiveLossCount;
+var GameCount = 0;
+var GameWinChance = .5;
+var RollCount = 0;
+var RollWinCount = 0;
+var RollWinChance = .02;
+var RollConsecutiveLossCount = 0;
 
-function GameEnd {
-  g
+
+function GameEnd() {
+  if(math.random() < GameWinChance) {
+    if(math.random() < RollWinChance) {
+      RollWinCount = RollWinCount + 1;
+      RollWinChance = 0.02;
+      RollConsecutiveLossCount = 0;
+    }
+    else {
+      RollWinChance = RollWinChance + 0.02;
+      RollConsecutiveLoss = RollConsecutiveLoss + 1;
+    }
+  }
+  else {
+    RollWinChance = RollWinChance + 0.015;
+    RollConsecutiveLoss = RollConsecutiveLoss + 1;
+  }
+  GameCount = GameCount + 1;
 }
-function Reset {
+function Reset() {
   GameCount = 0;
   RollWinCount = 0;
   RollWinChance = 0.02;
