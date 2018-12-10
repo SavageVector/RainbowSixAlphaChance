@@ -1,7 +1,38 @@
-var GameWinChance;
-var AlphapackWinChance;
+var AlphapackWinChanceAddWin = .02;
+var AlphapackWinChanceAddLoss = .015;
+var GameTotalCount = 100;
+var GameWinChance = 0.5;
+var AlphapackWinChanceArray;
 function CalculateAlphaProbability() {
+  var GameAlphapackWinChanceSum;
   GetTextboxValues();
+  AlphapackWinChanceArray[0] = AlphapackWinChanceAddWin;
+  
+  //Populate array with the average Alphapack chance at game "i"
+  var i;
+  for (i = 1; i < GameTotalCount; i++) {
+    AlphapackWinChanceArray[i] = AlphapackWinChanceArray[i-1] + (GameWinChance * AlphapackWinChanceAddWin) + ((1 - GameWinChance) * AlphapackWinChanceAddLoss);
+    if(AlphapackWinChanceArray[i] > 1) {
+      AlphapackWinChanceArray[i] = 1;
+    }
+  }
+  
+  //Populate array with the average chance of winning Alphapack for game "i"
+  for (i = 0; i < AlphapackWinChanceArray.length; i++) {
+    AlphapackWinChanceArray[i] = AlphapackWinChanceArray[i] * GameWinChance;
+  }
+  
+  //Populate array with the average chance of getting to game "i", and winnning
+  GameAlphapackWinChanceSum = AlphapackWinChanceArray[0];
+  for (i = 1; i < AlphapackWinChanceArray.length; i++) {
+    AlphapackWinChanceArray[i] = AlphapackWinChanceArray[i] * (1 - GameAlphapackWinChanceSum);
+    GameAlphapackWinChanceSum = GameAlphapackWinChanceSum + AlphapackWinChanceArray[i]
+    if (GameAlphapackWinChanceSum > 1) {
+      GameAlphapackWinChanceSum = 1;
+    }
+  }
+  
+  
   
   
   
@@ -10,52 +41,12 @@ function CalculateAlphaProbability() {
 }
 
 function GetTextboxValues() {
-  
+  GameWinChance = document.getelementbyid("TextWinrate").value;
 }
 function SetTextboxValues() {
-  
+  document.getelementbyid("ChancePerRound").value
+  document.getelementbyid("ChancePerRound").value
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Sub Roll()
-    Dim Chance As Double
-    Dim Count As Long
-    Dim RoundCount As Long
-    Chance = 0.02
-    Count = 0
-    RoundCount = 0
-    While Count < 1000000
-        Count = Count + 1
-        RoundCount = RoundCount + 1
-        If Rnd > 0.5 Then
-            If Rnd < Chance Then
-                Chance = 0.02
-                SheetFrequency.Cells(RoundCount, 1) = SheetFrequency.Cells(RoundCount, 1) + 1
-                SheetMain.Cells(2, 1) = SheetMain.Cells(2, 1) + 1
-                RoundCount = 0
-            Else
-                Chance = Chance + 0.02
-            End If
-        Else
-            Chance = Chance + 0.015
-        End If
-        SheetMain.Cells(2, 2) = SheetMain.Cells(2, 2) + 1
-    Wend
-End Sub
+function SetTable() {
+  //WIP
+}
