@@ -2,10 +2,11 @@ var AlphapackWinChanceAddWin = .02;
 var AlphapackWinChanceAddLoss = .015;
 var GameTotalCount = 100;
 var GameWinChance = 0.5;
-var AlphapackWinChanceArray = [];
 function CalculateAlphaProbability() {
+  var AlphapackWinChanceArray = [];
   var GameAlphapackWinChanceSum;
-  GetTextboxValues();
+  var AlphapackAverageGames = 0;
+  //GetTextboxValues();
   AlphapackWinChanceArray[0] = AlphapackWinChanceAddWin;
   
   //Populate array with the average Alphapack chance at game "i"
@@ -32,19 +33,27 @@ function CalculateAlphaProbability() {
     }
   }
   
-  document.getElementById("TextChancePerRound").innerText = GameAlphapackWinChanceSum / 100;
+  //AlphapackWinChanceArray.length
+  
+  for (i = 0; i < AlphapackWinChanceArray.length; i++) {
+    AlphapackAverageGames = AlphapackAverageGames + (AlphapackWinChanceArray[i] * (i + 1));
+  }
   
   
-  //SetTextboxValues();
+  //document.getElementById("TextChancePerRound").innerText = AlphapackAverageGames;
+  
+  
+  SetTextboxValues(AlphapackAverageGames, 1 / AlphapackAverageGames);
+  
   SetTable();
 }
 
 function GetTextboxValues() {
   GameWinChance = document.getElementById("TextWinrate").innerText;
 }
-function SetTextboxValues() {
-  document.getElementById("TextChancePerRound").innerText;
-  document.getElementById("TextAverageNumberOfGames").innerText;
+function SetTextboxValues(ChancePerRound, AverageNumberOfGames) {
+  document.getElementById("TextChancePerRound").innerText = ChancePerRound;
+  document.getElementById("TextAverageNumberOfGames").innerText = AverageNumberOfGames;
 }
 function SetTable() {
   //WIP
