@@ -6,7 +6,7 @@ function CalculateAlphaProbability() {
   var AlphapackWinChanceArray = [];
   var GameAlphapackWinChanceSum;
   var AlphapackAverageGames = 0;
-  //GetTextboxValues();
+  GetTextboxValues();
   AlphapackWinChanceArray[0] = AlphapackWinChanceAddWin;
   
   //Populate array with the average Alphapack chance at game "i"
