@@ -36,7 +36,7 @@ function CalculateAlphaProbability() {
   //Update page
   SetTextboxValues(1 / AlphapackAverageGames, AlphapackAverageGames);
   //WIP
-  DrawChart();
+  DrawChart(document.getElementById("ChartPrint"),AlphapackWinChanceArray);
   SetTable();
 }
 
@@ -50,6 +50,59 @@ function SetTextboxValues(ChancePerRound, AverageNumberOfGames) {
 function SetTable() {
   //WIP
 }
-function DrawChart() {
-  //WIP
+function DrawChart(Canvas, DataArray) {
+  var xPadding = 30;
+  var yPadding = 30;
+  var Chart = Canvas.getContext('2d');
+  //Set chart styling
+  Chart.lineWidth = 2;
+  Chart.strokeStyle = '#333';
+  Chart.font = 'italic 8pt sans-serif';
+  Chart.textAlign = "center";
+  //Draw axes
+  Chart.beginPath();
+  Chart.moveTo(xPadding, yPadding);
+  Chart.lineTo(xPadding, Canvas.height - yPadding);
+  Chart.lineTo(Canvas.width, Canvas.height - yPadding);
+  Chart.stroke();
+  
+  //Draw Line
+  Chart.strokeStyle = '#f00';
+  Chart.beginPath();
+  Chart.moveTo((xPadding * 1.5), Canvas.height - (((Canvas.height - yPadding) / getMaxY(DataArray)) * DataArray[0]) - yPadding);
+
+  for(var i = 1; i < DataArray.length; i ++) {
+      Chart.lineTo(((Canvas.width - xPadding) / DataArray.length) * i + (xPadding * 1.5), (Canvas.height - (((Canvas.height - yPadding) / getMaxY(DataArray)) * DataArray[i])) - yPadding);
+  }
+  Chart.stroke();
+  
+  
+  
+  
+  
+  
+  document.getElementById("TempOutput").innerText = Canvas.height;
+}
+
+
+
+function getMaxY(DataArray) {
+  var max = 0;
+  for(var i = 0; i < DataArray.length; i ++) {
+      if(DataArray[i] > max) {
+          max = DataArray[i];
+      }
+  }
+
+  //max += 10 - max % 10;
+  return max;
+}
+
+
+function getXPixel(val) {
+    return ((graph.width() - xPadding) / data.values.length) * val + (xPadding * 1.5);
+}
+
+function getYPixel(val) {
+    return graph.height() - (((graph.height() - yPadding) / getMaxY()) * val) - yPadding;
 }
