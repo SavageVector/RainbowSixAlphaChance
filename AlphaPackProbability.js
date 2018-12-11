@@ -49,7 +49,7 @@ function CalculateAlphaProbability() {
 }
 
 function GetTextboxValues() {
-  GameWinChance = document.getElementById("TextWinrate").value;
+  GameWinChance = parseInt(document.getElementById("TextWinrate").value, 10);
 }
 function SetTextboxValues(ChancePerRound, AverageNumberOfGames) {
   document.getElementById("TextChancePerRound").innerText = ChancePerRound;
