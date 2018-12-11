@@ -2,7 +2,7 @@ var AlphapackWinChanceAddWin = .02;
 var AlphapackWinChanceAddLoss = .015;
 var GameTotalCount = 100;
 var GameWinChance = 0.5;
-var AlphapackWinChanceArray;
+var AlphapackWinChanceArray = [];
 function CalculateAlphaProbability() {
   var GameAlphapackWinChanceSum;
   GetTextboxValues();
@@ -26,26 +26,25 @@ function CalculateAlphaProbability() {
   GameAlphapackWinChanceSum = AlphapackWinChanceArray[0];
   for (i = 1; i < AlphapackWinChanceArray.length; i++) {
     AlphapackWinChanceArray[i] = AlphapackWinChanceArray[i] * (1 - GameAlphapackWinChanceSum);
-    GameAlphapackWinChanceSum = GameAlphapackWinChanceSum + AlphapackWinChanceArray[i]
+    GameAlphapackWinChanceSum = GameAlphapackWinChanceSum + AlphapackWinChanceArray[i];
     if (GameAlphapackWinChanceSum > 1) {
       GameAlphapackWinChanceSum = 1;
     }
   }
   
+  document.getElementById("TextChancePerRound").innerText = GameAlphapackWinChanceSum / 100;
   
   
-  
-  
-  
-  SetTextboxValues();
+  //SetTextboxValues();
+  SetTable();
 }
 
 function GetTextboxValues() {
-  GameWinChance = document.getelementbyid("TextWinrate").value;
+  GameWinChance = document.getElementById("TextWinrate").innerText;
 }
 function SetTextboxValues() {
-  document.getelementbyid("ChancePerRound").value
-  document.getelementbyid("ChancePerRound").value
+  document.getElementById("TextChancePerRound").innerText;
+  document.getElementById("TextAverageNumberOfGames").innerText;
 }
 function SetTable() {
   //WIP
