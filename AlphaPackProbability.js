@@ -43,7 +43,7 @@ function CalculateAlphaProbability() {
   //document.getElementById("TextChancePerRound").innerText = AlphapackAverageGames;
   
   
-  SetTextboxValues(AlphapackAverageGames, 1 / AlphapackAverageGames);
+  SetTextboxValues(1 / AlphapackAverageGames, AlphapackAverageGames);
   
   SetTable();
 }
