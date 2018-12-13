@@ -6,35 +6,30 @@ function CalculateAlphaProbability() {
   var AlphapackWinChanceArray = [];
   var AlphapackWonChanceArray = [];
   var AlphapackWinChanceAverage;
-  var GameAlphapackWinChanceSum;
   var AlphapackAverageGames = 0;
   var Count;
   GetTextboxValues();
-  GameAlphapackWinChanceSum = 0;
   AlphapackWinChanceAverage = AlphapackWinChanceAddWin;
-  
-  AlphapackWinChanceArray[0] = AlphapackWinChanceAddWin * GameWinChance;
-  AlphapackWonChanceArray[0] = AlphapackWinChanceArray[0];
-  
+  AlphapackWinChanceArray[0] = 0;
+  AlphapackWonChanceArray[0] = 0; //AlphapackWinChanceAddWin * GameWinChance;
   Count = 0;
   while ((AlphapackWonChanceArray[Count] < 0.9999) && (Count <= GameCountMax)) {
     Count++;
     AlphapackWinChanceArray[Count] = (AlphapackWinChanceAverage * GameWinChance) * (1 - AlphapackWonChanceArray[Count - 1]);
     AlphapackWonChanceArray[Count] = AlphapackWonChanceArray[Count - 1] + AlphapackWinChanceArray[Count];
-    GameAlphapackWinChanceSum = GameAlphapackWinChanceSum + AlphapackWinChanceArray[Count];
     AlphapackWinChanceAverage += (GameWinChance * AlphapackWinChanceAddWin) + ((1 - GameWinChance) * AlphapackWinChanceAddLoss);
     if (AlphapackWinChanceAverage > 1) {
       AlphapackWinChanceAverage = 1;
     }
   }
   //Calculate average games before Alphapack win
-  for (Count = 0; Count < AlphapackWinChanceArray.length; Count++) {
+  for (Count = 1; Count < AlphapackWinChanceArray.length; Count++) {
     AlphapackAverageGames += (AlphapackWinChanceArray[Count] * (Count + 1));
   }
   //Update page
   SetTextboxValues(1 / AlphapackAverageGames, AlphapackAverageGames);
   //WIP
-  DrawChart(document.getElementById("ChartPrint"),AlphapackWinChanceArray);
+  DrawChart(document.getElementById("ChartPrint"), AlphapackWonChanceArray, AlphapackWinChanceArray);
   //DrawTable(document.getElementById("TablePrint"),AlphapackWinChanceArray);
   
   //document.getElementById("TempOutput").innerText = AlphapackWinChanceArray.length;
