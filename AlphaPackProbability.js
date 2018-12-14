@@ -30,7 +30,7 @@ function CalculateAlphaProbability() {
   SetTextboxValues(1 / AlphapackAverageGames, AlphapackAverageGames);
   //WIP
   DrawChart(document.getElementById("ChartPrint"), AlphapackWonChanceArray, AlphapackWinChanceArray);
-  DrawTable(document.getElementById("TablePrint"),AlphapackWinChanceArray);
+  DrawTable(document.getElementById("TablePrint"), AlphapackWinChanceArray, AlphapackWonChanceArray);
   
   //document.getElementById("TempOutput").innerText = AlphapackWinChanceArray.length;
 }
@@ -49,34 +49,6 @@ function SetTextboxValues(ChancePerRound, AverageNumberOfGames) {
 
 
 
-
-
-function DrawTable(TableDiv, Array) {
-  //TableDiv.removeChild();
-  tbl  = document.createElement('table');
-  tbl.id = "Table";
-  tbl.style.width  = '100px';
-  tbl.style.border = '1px solid black';
-  for(var Row = 0; Row < Array.length; Row++) {
-      var tr = tbl.insertRow();
-      for(var Column = 0; Column < 2; Column++){
-        var td = tr.insertCell();
-        td.appendChild(document.createTextNode('Cell'));
-        td.style.border = '1px solid black';
-        if (Column == 0) {
-          td.innerText = Row;
-        }
-        else {
-          td.innerText = Array[Row];
-        }
-      }
-  }
-  TableDiv.appendChild(tbl);
-}
-
-
-
-
 function GetArrayMaxValue(DataArray) {
   var Max = 0;
   for(var i = 0; i < DataArray.length; i ++) {
@@ -86,7 +58,6 @@ function GetArrayMaxValue(DataArray) {
   }
   return Max;
 }
-
 function GetArrayMaxPosition(Array) {
   var Max = 0;
   var MaxPos = 0;
@@ -98,4 +69,3 @@ function GetArrayMaxPosition(Array) {
   }
   return MaxPos;
 }
-
