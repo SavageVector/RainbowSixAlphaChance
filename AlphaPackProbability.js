@@ -23,14 +23,14 @@ function CalculateAlphaProbability() {
     }
   }
   //Calculate average games before Alphapack win
-  for (Count = 1; Count < AlphapackWinChanceArray.length; Count++) {
-    AlphapackAverageGames += (AlphapackWinChanceArray[Count] * (Count + 1));
+  for (Count = 0; Count < AlphapackWinChanceArray.length; Count++) {
+    AlphapackAverageGames += (AlphapackWinChanceArray[Count] * Count);
   }
   //Update page
   SetTextboxValues(1 / AlphapackAverageGames, AlphapackAverageGames);
   //WIP
   DrawChart(document.getElementById("ChartPrint"), AlphapackWonChanceArray, AlphapackWinChanceArray);
-  //DrawTable(document.getElementById("TablePrint"),AlphapackWinChanceArray);
+  DrawTable(document.getElementById("TablePrint"),AlphapackWinChanceArray);
   
   //document.getElementById("TempOutput").innerText = AlphapackWinChanceArray.length;
 }
@@ -52,7 +52,7 @@ function SetTextboxValues(ChancePerRound, AverageNumberOfGames) {
 
 
 function DrawTable(TableDiv, Array) {
-  TableDiv.removeChild();
+  //TableDiv.removeChild();
   tbl  = document.createElement('table');
   tbl.id = "Table";
   tbl.style.width  = '100px';
