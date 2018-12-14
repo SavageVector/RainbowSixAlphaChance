@@ -10,6 +10,7 @@ function CalculateAlphaProbability() {
 	var Count;
 	//Get user input
 	GetTextboxValues();
+	//Fills an array with the odds of getting an alpha pack after 'Count' round, and fills another array with chance of getting an alpha pack by 'Count' round
 	AlphapackWinChanceAverage = AlphapackWinChanceAddWin;
 	AlphapackWinChanceArray[0] = 0;
 	AlphapackWonChanceArray[0] = 0;
