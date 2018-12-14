@@ -17,7 +17,7 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
   //Label Y axis
   Chart.font = 'italic 8pt sans-serif';
   Chart.textAlign = "center";
-  for(var i = 0; i < GetArrayMaxValue(DataArray1) + 0.1; i += 0.1) {
+  for(var i = 0; i < 1; i += 0.1) {
     Chart.fillText(Math.round(i * 10) / 10, xPadding - 15, (Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * i)) - yPadding);
   }
   
@@ -28,6 +28,31 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
     if(0 == i % Math.round(DataArray1.length / 10)) {
       Chart.fillText(i, ((Canvas.width - (xPadding * 2)) / DataArray1.length) * i + xPadding, Canvas.height - yPadding + 20);
     }
+  }
+  
+  //Verticle grid
+  Chart.lineWidth = 1;
+  Chart.strokeStyle = "black";
+  Chart.globalAlpha = 0.15;
+  for(var i = 0; i < DataArray1.length ; i ++) {
+    if(0 == i % Math.round(DataArray1.length / 10)) {
+      Chart.beginPath();
+      Chart.moveTo(((Canvas.width - (xPadding * 2)) / DataArray1.length) * i + xPadding, Canvas.height - yPadding);
+      Chart.lineTo(((Canvas.width - (xPadding * 2)) / DataArray1.length) * i + xPadding, yPadding);
+      Chart.stroke();
+      }
+  }
+  
+  
+  //Horazontal grid
+  Chart.lineWidth = 1;
+  Chart.strokeStyle = "black";
+  Chart.globalAlpha = 0.15;
+  for(var i = 0; i < 1; i += 0.1) {
+    Chart.beginPath();
+    Chart.moveTo(xPadding, (Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * i)) - yPadding);
+    Chart.lineTo(Canvas.width - xPadding, (Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * i)) - yPadding);
+    Chart.stroke();
   }
   
   //Draw Line 1
