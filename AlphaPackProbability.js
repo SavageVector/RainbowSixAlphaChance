@@ -69,3 +69,7 @@ function GetArrayMaxPosition(Array) {
   }
   return MaxPos;
 }
+
+function RoundDigits(RoundNum, NumDigits) {
+  return (Math.round(RoundNum * Math.pow(10, NumDigits)) / Math.pow(10, NumDigits))
+}
