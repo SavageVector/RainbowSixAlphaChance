@@ -9,10 +9,10 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.lineWidth = 1;
 	Chart.strokeStyle = "black";
 	Chart.globalAlpha = 0.15;
-	for(var i = 0; i < 1; i += 0.1) {
+	for(var Count = 0; Count < 1; Count += 0.1) {
 		Chart.beginPath();
-		Chart.moveTo(xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * i)) - yPadding);
-		Chart.lineTo(Canvas.width - xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * i)) - yPadding);
+		Chart.moveTo(xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * Count)) - yPadding);
+		Chart.lineTo(Canvas.width - xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * Count)) - yPadding);
 		Chart.stroke();
 	}
 	//Verticle grid
@@ -28,8 +28,8 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.globalAlpha = 1;
 	Chart.font = 'italic 8pt sans-serif';
 	Chart.textAlign = "center";
-	for(var i = 0; i < 1; i += 0.1) {
-		Chart.fillText(Math.round(i * 10) / 10, xPadding - 15, ((Canvas.height - ((Canvas.height - yPadding * 2) * i)) - yPadding) + 4);
+	for(var Count = 0; Count < 1; Count += 0.1) {
+		Chart.fillText(Math.round(Count * 10) / 10, xPadding - 15, ((Canvas.height - ((Canvas.height - yPadding * 2) * Count)) - yPadding) + 4);
 	}
 	//Label X axis
 	Chart.globalAlpha = 1;
@@ -44,8 +44,8 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.globalAlpha = 0.5;
 	Chart.beginPath();
 	Chart.moveTo((xPadding), Canvas.height - (((Canvas.height - yPadding * 2) / 1.15) * DataArray2[0]) - yPadding);
-	for(var i = 0; i < DataArray2.length; i ++) {
-		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray2.length - 1)) * i + xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * DataArray2[i])) - yPadding);
+	for(var Count = 0; Count < DataArray2.length; Count ++) {
+		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray2.length - 1)) * Count + xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * DataArray2[Count])) - yPadding);
 	}
 	Chart.stroke();
 	//Max value Line 2 Zoom
@@ -64,21 +64,18 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.strokeStyle = "black";
 	Chart.globalAlpha = 0.7;
 	Chart.beginPath();
-	for(var i = 1; i < DataArray1.length; i++) {
-		if(DataArray1[i] > 0.25 && DataArray1[i-1] < 0.25) {
-			//Chart.moveTo(xPadding, Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * 0.25) - yPadding);
-			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.25 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.25) - yPadding);
-			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.25 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - yPadding);
+	for(var Count = 1; Count < DataArray1.length; Count++) {
+		if(DataArray1[Count] > 0.25 && DataArray1[Count - 1] < 0.25) {
+			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.25 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.25) - yPadding);
+			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.25 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - yPadding);
 		}
-		if(DataArray1[i] > 0.5 && DataArray1[i-1] < 0.5) {
-			//Chart.moveTo(xPadding, Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * 0.5) - yPadding);
-			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.5 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.5) - yPadding);
-			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.5 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - yPadding);
+		if(DataArray1[Count] > 0.5 && DataArray1[Count - 1] < 0.5) {
+			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.5 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.5) - yPadding);
+			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.5 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - yPadding);
 		}
-		if(DataArray1[i] > 0.75 && DataArray1[i-1] < 0.75) {
-			//Chart.moveTo(xPadding, Canvas.height - (((Canvas.height - yPadding) / (GetArrayMaxValue(DataArray1) + 0.2)) * 0.75) - yPadding);
-			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.75 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.75) - yPadding);
-			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.75 - DataArray1[i-1]) / (DataArray1[i] - DataArray1[i-1]) + (i - 1)) + xPadding, Canvas.height - yPadding);
+		if(DataArray1[Count] > 0.75 && DataArray1[Count - 1] < 0.75) {
+			Chart.moveTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.75 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * 0.75) - yPadding);
+			Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * ((0.75 - DataArray1[Count - 1]) / (DataArray1[Count] - DataArray1[Count - 1]) + (Count - 1)) + xPadding, Canvas.height - yPadding);
 		}
 	}
 	Chart.stroke();
@@ -88,8 +85,8 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.globalAlpha = 1;
 	Chart.beginPath();
 	Chart.moveTo(xPadding, Canvas.height - (((Canvas.height - yPadding * 2) / 1.15) * DataArray2[0]) - yPadding);
-	for(var i = 0; i < DataArray2.length; i ++) {
-		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray2.length - 1)) * i + xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / 1.15) * DataArray2[i])) - yPadding);
+	for(var Count = 0; Count < DataArray2.length; Count++) {
+		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray2.length - 1)) * Count + xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / 1.15) * DataArray2[Count])) - yPadding);
 	}
 	Chart.stroke();
 	//Draw Line 1
@@ -99,9 +96,8 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.beginPath();
 	Chart.moveTo(xPadding, Canvas.height - ((Canvas.height - yPadding * 2) * DataArray1[0]) - yPadding);
 
-	for(var i = 0; i < DataArray1.length; i ++) {
-		//( * i) + (xPadding * 1.5)
-		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * i + xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * DataArray1[i])) - yPadding);
+	for(var Count = 0; Count < DataArray1.length; Count ++) {
+		Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray1.length - 1)) * Count + xPadding, (Canvas.height - ((Canvas.height - yPadding * 2) * DataArray1[Count])) - yPadding);
 	}
 	Chart.stroke();
 	//Draw axes
