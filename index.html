@@ -1,26 +1,22 @@
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <Link rel="stylesheet" type="text/css" href="stylesheet.css"></script>
-    <script language="javascript" type="text/javascript" src="AlphaPackProbability.js"></script>
-    <script language="javascript" type="text/javascript" src="MiscUtils.js"></script>
-    <script language="javascript" type="text/javascript" src="DrawCanvas.js"></script>
-    <script language="javascript" type="text/javascript" src="DrawTable.js"></script>
-  </head>
-  <body>
-    <p>Uses W/L to calculate average number of games per Alpha Pack</p>
-    <p>W/L: <input id="TextWinrate" size="20" type="text" value="1"></p>
-    <p><button id="ButtonCalculate" onclick="CalculateAlphaProbability()">Calculate</button></p>
-    <p> </p>
-    <p>Chance per game: <label id="TextChancePerRound">N/A</label></p>
-    <p>Average number of games: <label id="TextAverageNumberOfGames">N/A</label></p>
-    <p> </p>
-    <canvas id="ChartPrint" width="1000" height="350"></canvas>
-    <p> </p>
-    <div id="TablePrint"></div>
-  </body>
+	<head>
+	<meta charset="utf-8"/>
+		<Link rel="stylesheet" type="text/css" href="stylesheet.css"></script>
+		<script language="javascript" type="text/javascript" src="AlphaPackProbability.js"></script>
+		<script language="javascript" type="text/javascript" src="MiscUtils.js"></script>
+		<script language="javascript" type="text/javascript" src="DrawCanvas.js"></script>
+		<script language="javascript" type="text/javascript" src="DrawTable.js"></script>
+	</head>
+	<body>
+		<p>Uses W/L to calculate average number of games per Alpha Pack</p>
+		<p>W/L: <input id="TextWinrate" size="20" type="text" value="1"></p>
+		<p><button id="ButtonCalculate" onclick="CalculateAlphaProbability()">Calculate</button></p>
+		<p> </p>
+		<p>Chance per game: <label id="TextChancePerRound">N/A</label></p>
+		<p>Average number of games: <label id="TextAverageNumberOfGames">N/A</label></p>
+		<p> </p>
+		<canvas id="ChartPrint" width="1000" height="350"></canvas>
+		<p> </p>
+		<div id="TablePrint"></div>
+	</body>
 </html>
-
-//READ-ME setup
-//Line 2 max value extension length
-// Set graph width based on browser size
