@@ -54,7 +54,7 @@ function DrawChart(Canvas, DataArray1, DataArray2) {
 	Chart.globalAlpha = 0.5;
 	Chart.beginPath();
 	Chart.moveTo(xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * GetArrayMaxValue(DataArray2))) - yPadding);
-	Chart.lineTo(((Canvas.width - xPadding) / (DataArray2.length - 1)) * GetArrayMaxPosition(DataArray2) + (xPadding * 1.5), (Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * GetArrayMaxValue(DataArray2))) - yPadding);
+	Chart.lineTo(((Canvas.width - (xPadding * 2)) / (DataArray2.length - 1)) * (GetArrayMaxPosition(DataArray2) * 1.1) + xPadding, (Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * GetArrayMaxValue(DataArray2))) - yPadding);
 	Chart.stroke();
 	Chart.textAlign = "center";
 	Chart.fillText(Math.round(10000 * GetArrayMaxValue(DataArray2)) / 10000, xPadding + 18, ((Canvas.height - (((Canvas.height - yPadding * 2) / (GetArrayMaxValue(DataArray2) * 1.15)) * GetArrayMaxValue(DataArray2))) - yPadding) + 15);
